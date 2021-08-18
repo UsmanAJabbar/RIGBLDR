@@ -1,0 +1,9 @@
+.Build-button {
+    background-color: white;
+    height: 5rem;
+    width: 20rem;
+    display: block;
+    margin: auto;
+    margin-top: 10rem;
+    border-radius: 41px;
+}
