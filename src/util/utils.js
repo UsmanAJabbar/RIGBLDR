@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
 
+const linkGen = (navText) => navText.toLowerCase().split(' ').join('-');
+
 /**
  * navGenerator - generates React links with the link and text
  * @param {@array} menuItems
@@ -8,8 +10,6 @@ import { Link, Route } from 'react-router-dom';
  * @returns: Returns an array of React links
  */
 const navGenerator = (menuItems = [], className = '') => {
-  const linkGen = (navText) => navText.toLowerCase().split(' ').join('-');
-
   return menuItems.map(
     navText => (
         <Link to={ (navText == 'Home') ? '/' : linkGen(navText) } className={className}>
@@ -17,9 +17,9 @@ const navGenerator = (menuItems = [], className = '') => {
         </Link>
     )
   );
-
 }
 
 export {
-  navGenerator
+  navGenerator,
+  linkGen
 };
