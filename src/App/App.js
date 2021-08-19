@@ -31,10 +31,8 @@ class App extends React.Component {
           <Menu />
           <Switch>
             {
-              Object.entries(navRouters).map(
-                ([navText, Component]) =>
-                  <Route path={(navText === 'Home') ? '/' : linkGen(navText)} exact component={() => <Component />} />
-              )
+              Object.entries(navRouters)
+                .map(([navText, Component]) => <Route path={ linkGen(navText) } exact component={() => <Component />} />)
             }
           </Switch>
         </Router>
