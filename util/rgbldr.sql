@@ -58,7 +58,7 @@ DROP TABLE IF EXISTS `apis`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `apis` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(1) NOT NULL AUTO_INCREMENT,
   `vendor_product_id` varchar(10) NOT NULL,
   `price` decimal(5,2) NOT NULL,
   `quantity` int(1) NOT NULL,
