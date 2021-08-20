@@ -34,7 +34,7 @@ CREATE TABLE `processors` (
   `smt` tinyint(1) NOT NULL,
   `tdp` varchar(4) NOT NULL,
   `fullname` varchar(64) NOT NULL,
-  `api_id` int(10) DEFAULT NULL,
+  `api_id` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `manufacturer` (`manufacturer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
