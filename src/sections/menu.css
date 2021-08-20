@@ -1,0 +1,10 @@
+#logo-text {
+    color: white;
+    display: inline-block;
+}
+
+#menu {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+}
