@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
 require("./routes/processors.routes")(app);
 
 const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, () => {
 	console.log(`RIGBLDR backend api is up! Port: ${PORT}.`);
 });

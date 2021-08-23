@@ -23,4 +23,5 @@ db.processors = require("./processors.model.js")(sequelize, Sequelize);
 //db.gpus = require("./gpus.model.js)(sequelize, Sequelize);
 db.apis = require("./apis.model.js")(sequelize, Sequelize);
 
+// db.sequelize.sync(function(err){});
 module.exports = db;
