@@ -5,5 +5,5 @@ module.exports = app => {
 
 	router.get("/", processors.findAll);
 	router.get("/:id", processors.findOne);
-	app.use('/api/', router);
+	app.use('/api', router);
 };

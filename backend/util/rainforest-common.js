@@ -1,16 +1,27 @@
-import axios from "axios";
+const axios = require("axios");
 
 const params = {
-  api_key: "",
-  type: "product",
-  amazon_domain: "amazon.com",
-  asin: myAsin
 }
 
-export default axios.get('https://api.rainforestapi.com/request', { params })
-.then(response => {
-  console.log(response.data.product.buybox_winner.price.value);
-  console.log(response.data.product.buybox_winner.availability.type);
-}).catch(error => {
-  console.log(error);
-});
+// axios.get(
+//.then(response => {
+//  console.log(response.data.product.buybox_winner.price.value);
+//  console.log(response.data.product.buybox_winner.availability.type);
+//}).catch(error => {
+//  console.log(error);
+//});
+
+
+
+module.exports = {
+  getAsin: (vendor_id) => axios({
+    method:"POST",
+    url: 'https://api.rainforestapi.com/request',
+    params: {
+      api_key: "",
+      type: "product",
+      amazon_domain: "amazon.com",
+      asin: myAsin
+    }
+  })
+}

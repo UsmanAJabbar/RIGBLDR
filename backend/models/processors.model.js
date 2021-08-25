@@ -44,7 +44,7 @@ module.exports = (sequelize, Sequelize) => {
 		api_id: {
 			type: Sequelize.STRING,
 		}
-	});
+	}, { timestamps: false });
 
 	return Processors;
 };

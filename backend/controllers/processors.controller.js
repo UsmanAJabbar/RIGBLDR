@@ -8,19 +8,31 @@ exports.create = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-const id = req.params.id;
+  const id = req.params.id;
 
-const processor = Processor.findOne({ where: { id: id } });
-if (processor === null) {
-	console.log('Not found!');
-} else {
-	console.log(processor instanceof Processor);
-	console.log(processor.fullname);
-};
+  Processor.findByPk(id)
+	  .then(data => {
+		  res.send(data);
+		})
+		.catch(err => {
+		  res.status(500).send({
+			  message:
+				  err.message || "Failure!"
+		});
+	});
 };
 
 exports.findAll = (req, res) => {
-
+  const processor = Processor.findAll()
+	  .then(data => {
+		  res.send(data);
+		})
+		.catch(err => {
+		  res.status(500).send({
+			  message:
+				  err.message || "Failure!"
+		});
+	});
 };
 
 exports.update = (req, res) => {
