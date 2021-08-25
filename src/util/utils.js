@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const linkGen = (navText) => {
   return (navText === 'Home') ? '/' : navText.toLowerCase().split(' ').join('-');
@@ -13,8 +13,8 @@ const linkGen = (navText) => {
  */
 const navGenerator = (menuItems = [], className = '') => {
   return menuItems.map(
-    navText => (
-        <Link to={ linkGen(navText) } className={className}>
+    (navText, index) => (
+        <Link to={ linkGen(navText) } className={className} key={index}>
           <span>{navText}</span>
         </Link>
     )

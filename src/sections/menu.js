@@ -1,4 +1,5 @@
 import React from 'react';
+import './menu.css'
 import { withRouter } from "react-router-dom";
 
 import {
@@ -6,24 +7,21 @@ import {
 } from '../util/utils';
 
 class Menu extends React.Component {
-  constructor(props) {
-    super(props)
-  }
   render () {
-    const {
-      
-    } =this.props;
-
+    return (
     <div className="section" id="menu">
       <div id="logo">
-        <span id="logo-text">rigbldr</span>
+        <h1 id="logo-text">rigbldr</h1>
       </div>
       <div id="navigation-menu">
         {
           navGenerator(menuItems)
         }
+        <span className="dot"></span>
+        <span className="dot2"></span>
       </div>
     </div>
+    )
   }
 }
 

@@ -1,0 +1,23 @@
+.Home-section {
+    color: white;
+}
+
+.Build-button {
+    background-color: white;
+    height: 5rem;
+    width: 20rem;
+    display: block;
+    margin: auto;
+    margin-top: 10rem;
+    border-radius: 41px;
+    color: #000000;
+    text-align: center;
+    line-height: 5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    border: solid 3px transparent;
+    background-image: linear-gradient(rgba(0, 209, 255, 1), rgba(0, 133, 255, 1)), linear-gradient(rgba(0, 133, 255, 1), rgba(0, 209, 255, 1));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 2px 1000px 1px #fff inset;
+}
