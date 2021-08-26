@@ -23,11 +23,15 @@ const processor = Processors.findOne({
 };
 
 exports.findAll = (req, res) => {
-  const { socket } = req.query;
+  const { core, socket } = req.query;
   const filters = {};
+  if (core) 
+    filters.core = {
+      [Op.like]: `${core}%`,
+    }
   if (socket) 
     filters.socket = {
-      [Op.like]: `${socket}%`, // you can also use $like if you are using older version of sequelize
+      [Op.like]: `${socket}%`,
     }
   const processor = Processors.findAll({
 		where: filters,
