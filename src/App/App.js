@@ -34,18 +34,22 @@ class App extends React.Component {
       {/* Sections */}
       <Switch>
         {
-          Object.entries(pages).map(([navText, ReactComponent], index) => (
-            <Route
-              key={index}
-              path={linkGen(navText)}
-              exact
-              component={() => (
-                <Section>
-                  {ReactComponent}
-                </Section>
-              )}
-            />
-          ))
+          Object.entries(pages).map(([navText, ReactComponent], index) => {
+            const navLink = linkGen(navText);
+            const tag = navLink.slice(1) || 'home';
+            return (
+              <Route
+                key={index}
+                path={navLink}
+                exact
+                component={() => (
+                  <Section sectionId={tag + '-section'} containerId={tag + '-container'}>
+                    {ReactComponent}
+                  </Section>
+                )}
+              />
+            )
+          })
         }
       </Switch>
 
