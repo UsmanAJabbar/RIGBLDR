@@ -13,6 +13,7 @@ import Home from '../Home/Home';
 import Build from '../Build/Build';
 import Contact from '../Contact/Contact';
 import Section from '../sections/section';
+import { linkGen } from '../util/utils';
 
 // Misc imports
 
@@ -27,21 +28,36 @@ class App extends React.Component {
         containerId="nav-container"
         overrides={{ container: { height: 'fit-content' } }}
       >
-        <Menu />
+        <Menu menuItems={Object.keys(pages)}/>
       </Section>
 
       {/* Sections */}
-      <Section>
-        <Switch>
-          <Route path="/" exact component={() => <Home />} />
-          <Route path="/build-a-pc" exact component={() => <Build />} />
-          <Route path="/contact" exact component={() => <Contact />} />
-        </Switch>
-      </Section>
+      <Switch>
+        {
+          Object.entries(pages).map(([navText, ReactComponent], index) => (
+            <Route
+              key={index}
+              path={linkGen(navText)}
+              exact
+              component={() => (
+                <Section>
+                  {ReactComponent}
+                </Section>
+              )}
+            />
+          ))
+        }
+      </Switch>
 
     </Router>
     );
   }
+}
+
+const pages = {
+  'Home': <Home />,
+  'Build': <Build />,
+  'Contact': <Contact />
 }
 
 export default App;

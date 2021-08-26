@@ -8,7 +8,7 @@ import {
 
 class Menu extends React.Component {
   render () {
-    const menuItems = this.props.menuItems || defaultMenuItems;
+    const menuItems = this.props.menuItems;
     return (
       <>
         <div id="logo">
@@ -34,10 +34,5 @@ class Menu extends React.Component {
   }
 }
 
-const defaultMenuItems = [
-  'Home',
-  'Build A PC',
-  'Contact'
-];
 
 export default withRouter(Menu);

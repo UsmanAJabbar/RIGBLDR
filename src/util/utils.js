@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const linkGen = (navText) => {
-  return (navText === 'Home') ? '/' : navText.toLowerCase().split(' ').join('-');
+  return (navText === 'Home') ? '/' : '/' + navText.toLowerCase().split(' ').join('-');
 }
 
 /**
@@ -25,8 +25,8 @@ const navGenerator = (menuItems = [], options = {}) => {
     <ul style={ulStyle} className={ulClassName}>
       {
         menuItems.map((navText, index) => (
-          <li style={liStyle} className={liClassName}>
-            <Link to={linkGen(navText)} key={index}>
+          <li style={liStyle} className={liClassName} key={index}>
+            <Link to={linkGen(navText)}>
               <span style={textStyle} className={textClassName}>{navText}</span>
             </Link>
           </li>
