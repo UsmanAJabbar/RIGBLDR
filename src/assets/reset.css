@@ -57,6 +57,7 @@ table {
 span, p, button {
 	font-size: 1rem;
 	letter-spacing: -0.04rem;
+	font-weight: 500;
 }
 
 h1 {

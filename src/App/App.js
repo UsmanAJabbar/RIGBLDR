@@ -26,7 +26,7 @@ class App extends React.Component {
       <Section
         sectionId="nav-section"
         containerId="nav-container"
-        overrides={{ container: { height: 'fit-content' } }}
+        overrides={{ container: { height: 'fit-content', padding: '1.5rem 0' } }}
       >
         <Menu menuItems={Object.keys(pages)}/>
       </Section>
