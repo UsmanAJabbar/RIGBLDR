@@ -41,10 +41,28 @@ module.exports = (sequelize, Sequelize) => {
 			allowNull: false,
 			unique: true,
 		},
-		api_id: {
+		apiId: {
 			type: Sequelize.STRING,
 		}
 	}, { timestamps: false });
 
-	return Processors;
+	const Apis = sequelize.define("apis", {
+		vendor_id: {
+			type: Sequelize.STRING,
+		},
+		vendor_product_id: {
+			type: Sequelize.STRING,
+			unique: true,
+		},
+		price: {
+			type: Sequelize.DECIMAL(5,2),
+		},
+		in_stock: {
+			type: Sequelize.BOOLEAN,
+		},
+	});
+
+	Processors.belongsTo(Apis);
+
+	return { Processors, Apis };
 };

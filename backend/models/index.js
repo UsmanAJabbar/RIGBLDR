@@ -18,10 +18,10 @@ const db = {}
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.processors = require("./processors.model.js")(sequelize, Sequelize);
+//db.processors = require("./processors.model.js")(sequelize, Sequelize);
 //db.motherboards = require("./motherboards.model.js)(sequelize, Sequelize);
 //db.gpus = require("./gpus.model.js)(sequelize, Sequelize);
-db.apis = require("./apis.model.js")(sequelize, Sequelize);
+db.models = require("./models.js")(sequelize, Sequelize);
 
 db.sequelize.sync(function(err){});
 module.exports = db;

@@ -1,5 +1,5 @@
 const db = require("../models");
-const Processor = db.processors;
+const { Processors, Apis } = db.models;
 const Op = db.Sequelize.Op;
 
 
@@ -8,9 +8,9 @@ exports.create = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-  const id = req.params.id;
-
-  Processor.findByPk(id)
+const processor = Processors.findOne({
+  where: { id: req.params.id },
+  include: [ { model: Apis, attributes: ['price', 'in_stock'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})
@@ -23,7 +23,8 @@ exports.findOne = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  const processor = Processor.findAll()
+  const processor = Processors.findAll({
+			include: [ { model: Apis, attributes: ['price', 'in_stock'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})
