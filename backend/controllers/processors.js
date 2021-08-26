@@ -23,8 +23,15 @@ const processor = Processors.findOne({
 };
 
 exports.findAll = (req, res) => {
+  const { socket } = req.query;
+  const filters = {};
+  if (socket) 
+    filters.socket = {
+      [Op.like]: `${socket}%`, // you can also use $like if you are using older version of sequelize
+    }
   const processor = Processors.findAll({
-			include: [ { model: Apis, attributes: ['price', 'in_stock'] } ] })
+		where: filters,
+    include: [ { model: Apis, attributes: ['price', 'in_stock'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})

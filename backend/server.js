@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.json({ message: "Works" });
+  res.json({ this: "RIGBLDR" });
 });
 
 require("./routes/processors")(app);
@@ -26,7 +26,7 @@ app.listen(PORT, () => {
 	console.log(`RIGBLDR backend api is up! Port: ${PORT}.`);
 });
 
-
+// scraps for future scheduler, etc
 // const asyncApiCall = async () => {
 // const response = await .getCompatibility('Austin', '1987-05-21', 'Taylor', '1989-09-27')
 
