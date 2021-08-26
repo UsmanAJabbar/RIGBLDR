@@ -11,14 +11,29 @@ const linkGen = (navText) => {
  * @param {@string} className
  * @returns: Returns an array of React links
  */
-const navGenerator = (menuItems = [], className = '') => {
-  return menuItems.map(
-    (navText, index) => (
-        <Link to={ linkGen(navText) } className={className} key={index}>
-          <span>{navText}</span>
-        </Link>
-    )
-  );
+const navGenerator = (menuItems = [], options = {}) => {
+  const {
+    ulClassName = '',
+    liClassName = '',
+    textClassName = '',
+    ulStyle = {},
+    liStyle = {},
+    textStyle = {}
+  } = options;
+
+  return (
+    <ul style={ulStyle} className={ulClassName}>
+      {
+        menuItems.map((navText, index) => (
+          <li style={liStyle} className={liClassName}>
+            <Link to={linkGen(navText)} key={index}>
+              <span style={textStyle} className={textClassName}>{navText}</span>
+            </Link>
+          </li>
+        ))
+      }
+    </ul>
+  )
 }
 
 export {

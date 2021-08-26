@@ -12,23 +12,20 @@ import './section.css';
  *   @overrides (Obj): contains an obj with the key `section` and `container` with CSS to override
  */
 class Section extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render () {
     const {
-      sectionId,
-      sectionClasses,
-      containerId,
-      containerClasses,
-      overrides
+      sectionId = '',
+      sectionClasses = [],
+      containerId = '',
+      containerClasses = [],
+      overrides = {},
+      children
     } = this.props;
 
     return (
       <section className={'section' + sectionClasses.join(' ')} id={sectionId} style={overrides.section}>
         <div className={'container' + containerClasses.join(' ')} id={containerId} style={overrides.container}>
-          { ...this.children }
+          { children }
         </div>
       </section>
     )

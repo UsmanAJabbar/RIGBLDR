@@ -1,0 +1,9 @@
+.defaultButton {
+    border-radius: 100rem;
+    padding: .5rem 3rem;
+    border: solid 3px transparent;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(270deg, #00D1FF 0%, #0085FF 100%);
+    background-origin: border-box;
+    background-clip: border-box;
+    box-shadow: 2px 1000px 1px #fff inset;
+}

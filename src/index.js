@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import App from './App/App';
 
+import './assets/reset.css';
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

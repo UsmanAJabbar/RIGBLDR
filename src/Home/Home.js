@@ -1,14 +1,15 @@
 import React from 'react';
+
+import Button from '../assets/Button';
+
 import './Home.css'
 
 class Home extends React.Component {
   render() {
     return (
-      <div className="Home-section">
-        <a href='/build-a-pc'>
-          <span className="Build-button">Build a PC</span>
-        </a>
-      </div>
+      <a href='/build-a-pc'>
+        <Button text={'Build a PC'} size="lg" />
+      </a>
     );
   }
 }

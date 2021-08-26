@@ -8,24 +8,33 @@ import {
 
 class Menu extends React.Component {
   render () {
+    const menuItems = this.props.menuItems || defaultMenuItems;
     return (
-    <div className="section" id="menu">
-      <div id="logo">
-        <h1 id="logo-text">rigbldr</h1>
-      </div>
-      <div id="navigation-menu">
-        {
-          navGenerator(menuItems)
-        }
-        <span className="dot"></span>
-        <span className="dot2"></span>
-      </div>
-    </div>
+      <>
+        <div id="logo">
+          <h1 id="logo-text" style={ {fontWeight: 600} }>rigbldr</h1>
+        </div>
+        <div id="navigation-link-container">
+          {
+            navGenerator(
+              menuItems, {
+                ulStyle: {
+                  display: 'flex',
+                },
+                liStyle: {
+                  marginRight: 10,
+                  marginLeft: 10,
+                }
+              }
+            )
+          }
+        </div>
+      </>
     )
   }
 }
 
-const menuItems = [
+const defaultMenuItems = [
   'Home',
   'Build A PC',
   'Contact'

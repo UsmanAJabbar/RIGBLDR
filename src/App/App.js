@@ -11,27 +11,35 @@ import {
 import Menu from '../sections/menu';
 import Home from '../Home/Home';
 import Build from '../Build/Build';
-import Contact from '../Contact/Contact'
+import Contact from '../Contact/Contact';
+import Section from '../sections/section';
 
 // Misc imports
 
 class App extends React.Component {
   render() {
-
-    /* React Router DOM { Switch, Router, Rotuer} references */
-    /* https://www.techomoro.com/how-to-create-a-multi-page-website-with-react-in-5-minutes/ */
     return (
-      <>
-        <Router>
-          <Menu />
-          <Switch>
-            <Route path="/" exact component={() => <Home />} />
-            <Route path="/build-a-pc" exact component={() => <Build />} />
-            <Route path="/contact" exact component={() => <Contact />} />
-            <span className="dot1"></span>
-          </Switch>
-        </Router>
-      </>
+    <Router>
+
+      {/* Menu */}
+      <Section
+        sectionId="nav-section"
+        containerId="nav-container"
+        overrides={{ container: { height: 'fit-content' } }}
+      >
+        <Menu />
+      </Section>
+
+      {/* Sections */}
+      <Section>
+        <Switch>
+          <Route path="/" exact component={() => <Home />} />
+          <Route path="/build-a-pc" exact component={() => <Build />} />
+          <Route path="/contact" exact component={() => <Contact />} />
+        </Switch>
+      </Section>
+
+    </Router>
     );
   }
 }
