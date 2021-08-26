@@ -1,0 +1,2 @@
+apis.model.js:  Apis.hasOne(Processor, { foreignKey: 'fk_cpuid', targetKey: 'vendor_product_id' });
+processors.model.js:  Processors.belongsTo( Api, { foreignKey: 'fk_cpuid', targetKey: 'vendor_product_id' });
