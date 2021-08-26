@@ -18,4 +18,5 @@ For now you can use the endpoint as:
 
 - /cpu/ for all processors, or 
 - /cpu/:id for a specific id, or
-- /cpu?socket=??? with other parameters coming soon!
+- /cpu?key=value&key=value
+- - currently supported: socket, and core, with more key params coming soon!
