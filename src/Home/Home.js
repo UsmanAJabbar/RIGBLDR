@@ -8,7 +8,9 @@ class Home extends React.Component {
   render() {
     return (
       <a href='/build'>
-        <Button text={'Build a PC'} overrides={{ text: { fontSize: '2rem', letterSpacing: '-0.12rem' } }} />
+        <Button overrides={{ text: { fontSize: '2rem', letterSpacing: '-0.12rem' } }} >
+          Build A PC
+        </Button>
       </a>
     );
   }

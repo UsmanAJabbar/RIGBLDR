@@ -5,15 +5,15 @@ import './button.css';
 class Button extends React.Component {
   render () {
     const {
-      text = '',
       buttonClasses = [],
       textClasses = [],
-      overrides = {}
+      overrides = {},
+      children
     } = this.props;
 
     return (
       <button style={overrides.button} className={buttonClasses.join(' ') || 'defaultButton'}>
-        <span style={overrides.text} className={textClasses.join(' ')}>{text}</span>
+        <span style={overrides.text} className={textClasses.join(' ')}>{children}</span>
       </button>
     );
   }
