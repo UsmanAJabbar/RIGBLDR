@@ -1,32 +1,44 @@
 import React from 'react';
+
 import ProductRow from './ProductRow';
+import ContentBox from './ContentBox';
+import Button from '../assets/Button';
+
+import './Build.css';
 
 class Build extends React.Component {
   render() {
     return (
-      <div style={{ backgroundColor: 'white', padding: '2rem', margin: '2rem', boxShadow: '0.01rem 0.01rem 2rem'}}>
-        <table style={{ width: '100%' }}>
-          <tr style={{ textAlign: 'left', textTransform: 'uppercase', fontWeight: 900 }}>
-            <th>Part</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th></th>
-          </tr>
-          {
-            [
-              'CPU',
-              'Motherboard',
-              'HDD/SDD',
-              'RAM / Memory',
-              'GPU',
-              'PSU',
-              'Case'
-            ].map(category => (
-              <ProductRow part={category} />
-            ))
-          }
+      <ContentBox>
+        <table id="build" style={{ width: '100%' }}>
+          <thead>
+            <tr style={{ textAlign: 'left', textTransform: 'uppercase', fontWeight: 900 }}>
+              <th>Part</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Add/Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              [
+                'CPU',
+                'Mobo',
+                'SSD',
+                'RAM',
+                'GPU',
+                'PSU',
+                'Case'
+              ].map((category, index)=> (
+                <ProductRow part={category} key={index} />
+              ))
+            }
+          </tbody>
         </table>
-      </div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginTop: '1rem' }}>
+          <Button overrides={{ text: {textTransform: 'uppercase'}}}>Proceed</Button>
+        </div>
+      </ContentBox>
     )
   }
 }

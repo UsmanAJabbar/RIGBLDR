@@ -54,7 +54,7 @@ table {
 
 
 /* letter-spacing == 4% of font-size */
-span, p, button {
+span, p, button, td, th {
 	font-size: 1rem;
 	letter-spacing: -0.04rem;
 	font-weight: 500;

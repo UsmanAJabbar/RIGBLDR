@@ -18,13 +18,8 @@ class Menu extends React.Component {
           {
             navGenerator(
               menuItems, {
-                ulStyle: {
-                  display: 'flex',
-                },
-                liStyle: {
-                  marginRight: 10,
-                  marginLeft: 10,
-                }
+                ulStyle: { display: 'flex' },
+                liStyle: { margin: '0 10px 0 10px' }
               }
             )
           }
