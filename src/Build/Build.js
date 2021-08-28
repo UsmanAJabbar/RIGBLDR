@@ -36,7 +36,7 @@ class Build extends React.Component {
           </tbody>
         </table>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginTop: '1rem' }}>
-          <Button overrides={{ text: {textTransform: 'uppercase'}}}>Proceed</Button>
+          <Button overrides={{ text: { textTransform: 'uppercase', fontWeight: 700 }}}>Proceed</Button>
         </div>
       </ContentBox>
     )

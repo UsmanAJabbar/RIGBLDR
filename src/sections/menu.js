@@ -12,7 +12,9 @@ class Menu extends React.Component {
     return (
       <>
         <div id="logo">
-          <h1 id="logo-text" style={{ fontWeight: 600 }}>rigbldr</h1>
+          <a href="/">
+            <h1 id="logo-text" style={{ fontWeight: 600 }}>rigbldr</h1>
+          </a>
         </div>
         <div id="navigation-link-container">
           {
