@@ -19,6 +19,8 @@ app.get("/", (req, res) => {
 });
 
 require("./routes/processors")(app);
+require("./routes/video_cards")(app);
+require("./routes/motherboards")(app);
 
 const PORT = process.env.PORT || 8080;
 
