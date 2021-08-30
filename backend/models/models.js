@@ -14,6 +14,7 @@ module.exports = (sequelize, Sequelize) => {
   }, { timestamps: false });
 
 	const Apis = sequelize.define("apis", {
+		title: { type: Sequelize.STRING, },
 		vendor_id: { type: Sequelize.STRING, },
 		vendor_product_id: { type: Sequelize.STRING, unique: true, },
 		price: { type: Sequelize.DECIMAL(5,2), },
@@ -76,9 +77,49 @@ module.exports = (sequelize, Sequelize) => {
 		apiId: { type: Sequelize.INTEGER, }
   }, { timestamps: false });
 
-	Processors.belongsTo(Apis);
-	VideoCards.belongsTo(Apis);
-	Motherboards.belongsTo(Apis);
+  const ProcessorApi = sequelize.define('ProcessorApi', {
+	  id: {
+		  type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true,
+			allowNull: false
+  	}
+	});
+  const VideoCardApi = sequelize.define('VideoCardApi', {
+	  id: {
+		  type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true,
+			allowNull: false
+  	}
+	});
+  const MotherboardApi = sequelize.define('MotherboardApi', {
+	  id: {
+		  type: Sequelize.INTEGER,
+			primaryKey: true,
+			autoIncrement: true,
+			allowNull: false
+  	}
+	});
+
+	Processors.belongsToMany(Apis, { through: ProcessorApi });
+	Apis.belongsToMany(Processors, { through: ProcessorApi });
+  ProcessorApi.belongsTo(Processors);
+  ProcessorApi.belongsTo(Apis);
+	Processors.hasMany(ProcessorApi);
+	Apis.hasMany(ProcessorApi);
+	VideoCards.belongsToMany(Apis, { through: VideoCardApi });
+	Apis.belongsToMany(VideoCards, { through: VideoCardApi });
+	VideoCardApi.belongsTo(VideoCards);
+	VideoCardApi.belongsTo(Apis);
+	VideoCards.hasMany(VideoCardApi);
+	Apis.hasMany(VideoCardApi);
+	Motherboards.belongsToMany(Apis, { through: MotherboardApi });
+	Apis.belongsToMany(Motherboards, { through: MotherboardApi });
+	MotherboardApi.belongsTo(Motherboards);
+	MotherboardApi.belongsTo(Apis);
+	Motherboards.hasMany(MotherboardApi);
+	Apis.hasMany(MotherboardApi);
 
 	return { Processors, VideoCards, Motherboards, Apis };
 };

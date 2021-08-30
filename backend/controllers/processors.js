@@ -30,7 +30,35 @@ exports.findAll = (req, res) => {
   (manufacturer) ? filters.manufacturer = {[Op.like]: `${manufacturer}%`} : null;
   const processor = Processors.findAll({
 		where: filters,
-    include: [ { model: Apis, attributes: ['price', 'in_stock'] } ] })
+    include: [
+			{
+				model: Apis, 
+				attributes: ['price', 'in_stock'] 
+			},
+			{
+				model: Motherboards, 
+				where: filters,
+				attributes: [],
+				include: [
+					{
+						model: Apis, 
+						attributes: ['price', 'in_stock'] 
+					},
+					{	
+						model: VideoCards,
+						where: filters,
+						attributes: []
+						include: [
+							{
+								model: Apis, 
+								attributes: ['price', 'in_stock'] 
+							}
+						]
+					}	
+				]
+			}
+		] 
+		})
 	  .then(data => {
 		  res.send(data);
 		})
