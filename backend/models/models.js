@@ -22,8 +22,8 @@ module.exports = (sequelize, Sequelize) => {
 
   const VideoCards = sequelize.define("video_cards", {
 		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
-    manufacturer: { type: Sequelize.STRING, allowNull: false, },
-    chipset_manufacturer: { type: Sequelize.STRING, allowNull: false, }, 
+    manufacturer: { type: Sequelize.STRING, },
+    chipset_manufacturer: { type: Sequelize.STRING, }, 
     chipset: { type: Sequelize.STRING, allowNull: false, }, 
     memory: { type: Sequelize.INTEGER, allowNull: false, }, 
     core_clock: { type: Sequelize.INTEGER, allowNull: false, }, 
@@ -33,16 +33,16 @@ module.exports = (sequelize, Sequelize) => {
 
 	const Motherboards = sequelize.define("motherboards", {
 		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
-    manufacturer: { type: Sequelize.STRING, allowNull: false, }, 
-    chipset: { type: Sequelize.STRING, allowNull: false, }, 
+    manufacturer: { type: Sequelize.STRING, }, 
+    chipset: { type: Sequelize.STRING, }, 
     socket: { type: Sequelize.STRING, allowNull: false, }, 
     form_factor: { type: Sequelize.STRING, allowNull: false, }, 
-    max_mem: { type: Sequelize.INTEGER, allowNull: false, }, 
+    max_mem: { type: Sequelize.STRING, allowNull: false, }, 
     mem_slots: { type: Sequelize.INTEGER, allowNull: false, }, 
-    ddr_type: { type: Sequelize.STRING, allowNull: false, }, 
-    pcie_gen: { type: Sequelize.INTEGER, allowNull: false, }, 
-    sata6_slots: { type: Sequelize.INTEGER, allowNull: false, }, 
-    m2_slots: { type: Sequelize.INTEGER, allowNull: false, }, 
+    ddr_type: { type: Sequelize.STRING, }, 
+    pcie_gen: { type: Sequelize.INTEGER, }, 
+    sata_slots: { type: Sequelize.INTEGER, }, 
+    m2_slots: { type: Sequelize.INTEGER, }, 
   }, { timestamps: false });
 
   const Memory = sequelize.define("memory", {

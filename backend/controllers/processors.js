@@ -10,7 +10,7 @@ exports.create = (req, res) => {
 exports.findOne = (req, res) => {
 const processor = Processors.findOne({
   where: { id: req.params.id },
-  include: [ { model: Apis, attributes: ['price', 'in_stock'] } ] })
+  include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})
