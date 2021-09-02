@@ -16,10 +16,10 @@ gpuJSON.forEach(function(gpu) {
 		  if (key == 'value') {
 				let gpuValue = gpuPrice[key];
 
-		// insert statment
-		let sql = `INSERT INTO apis(title,vendor_id,vendor_product_id,price,in_stock,createdAt,updatedAt)
+		// insert statement
+		let sql = `INSERT INTO vendor_endpoints(title,vendor_id,vendor_product_id,price,in_stock,createdAt,updatedAt)
           VALUES('${gpuTitle}',1,'${gpuASIN}','${gpuValue}',true,'${currDate}','${currDate}')`;
-// execute the insert statment
+// execute the insert statement
 		connection.query(sql);
 
 		}

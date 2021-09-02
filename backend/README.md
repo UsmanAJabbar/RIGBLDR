@@ -3,7 +3,7 @@
 written primarily using node.js with express and sequelize.
 
 to get started: 
-- add your database information to config/db.config.js 
+- add your database information to config/config.js 
 - create the db and grant permissions for your user
 - from the backend directory, do a 'npm run server' and it should create your tables with no error, etc..
 

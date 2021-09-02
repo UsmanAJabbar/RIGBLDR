@@ -1,5 +1,5 @@
 const db = require("../models");
-const { Processors, Apis } = db.models;
+const { Processors, VendorEndpoints } = db.models;
 const Op = db.Sequelize.Op;
 
 
@@ -23,39 +23,23 @@ const processor = Processors.findOne({
 };
 
 exports.findAll = (req, res) => {
-  const { core, socket, manufacturer } = req.query;
+  const { core, socket, manufacturer, proc_tier, generation, part_num, thread, smt, tdp } = req.query;
   const filters = {};
   (core) ? filters.core = {[Op.like]: `${core}%`} : null;
   (socket) ? filters.socket = {[Op.like]: `${socket}%`} : null;
   (manufacturer) ? filters.manufacturer = {[Op.like]: `${manufacturer}%`} : null;
+  (proc_tier) ? filters.proc_tier = {[Op.like]: `${proc_tier}%`} : null;
+  (generation) ? filters.generation = {[Op.like]: `${generation}%`} : null;
+  (part_num) ? filters.part_num = {[Op.like]: `${part_num}%`} : null;
+  (thread) ? filters.thread = {[Op.like]: `${thread}%`} : null;
+  (smt) ? filters.smt = {[Op.like]: `${smt}%`} : null;
+  (tdp) ? filters.tdp = {[Op.like]: `${tdp}%`} : null;
   const processor = Processors.findAll({
 		where: filters,
     include: [
 			{
-				model: Apis, 
+				model: VendorEndpoints, 
 				attributes: ['price', 'in_stock'] 
-			},
-			{
-				model: Motherboards, 
-				where: filters,
-				attributes: [],
-				include: [
-					{
-						model: Apis, 
-						attributes: ['price', 'in_stock'] 
-					},
-					{	
-						model: VideoCards,
-						where: filters,
-						attributes: []
-						include: [
-							{
-								model: Apis, 
-								attributes: ['price', 'in_stock'] 
-							}
-						]
-					}	
-				]
 			}
 		] 
 		})
