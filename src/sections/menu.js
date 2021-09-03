@@ -10,7 +10,7 @@ function colorInvert() {
   console.log('ye')
   let color = 'invert(100%)';
   let back = 'black'
-  if (document.body.style.filter == 'invert(100%)') {
+  if (document.body.style.filter === 'invert(100%)') {
     color = 'invert(0%)'
     back = 'white'
   }
