@@ -23,9 +23,9 @@ exports.findOne = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  const { chipset, socket, manufacturer, ddr_type, form_factor, sata_slots, m2_slots, mem_slots, max_mem } = req.query;
+  const { model, socket, manufacturer, ddr_type, form_factor, sata_slots, m2_slots, mem_slots, max_mem } = req.query;
   const filters = {};
-  (name) ? filters.name = {[Op.like]: `${name}%`} : null;
+  (model) ? filters.model = {[Op.like]: `${model}%`} : null;
   (socket) ? filters.socket = {[Op.like]: `${socket}%`} : null;
   (manufacturer) ? filters.manufacturer = {[Op.like]: `${manufacturer}%`} : null;
   (ddr_type) ? filters.ddr_type = {[Op.like]: `${ddr_type}%`} : null;

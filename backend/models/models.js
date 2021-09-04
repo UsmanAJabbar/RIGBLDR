@@ -28,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
     memory: { type: Sequelize.INTEGER, allowNull: false, }, 
     core_clock: { type: Sequelize.INTEGER, allowNull: false, }, 
     boost_clock: { type: Sequelize.INTEGER, allowNull: false, }, 
-    interface: { type: Sequelize.STRING, allowNull: false, }, 
+    pcie_gen: { type: Sequelize.STRING, allowNull: false, }, 
   }, { timestamps: false });
 
 	const Motherboards = sequelize.define("motherboards", {
