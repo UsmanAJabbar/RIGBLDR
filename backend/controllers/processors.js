@@ -23,8 +23,9 @@ const processor = Processors.findOne({
 };
 
 exports.findAll = (req, res) => {
-  const { core, socket, manufacturer, proc_tier, generation, part_num, thread, smt, tdp } = req.query;
+  const { id, core, socket, manufacturer, proc_tier, generation, part_num, thread, smt, tdp } = req.query;
   const filters = {};
+  (id) ? filters.id = {[Op.like]: `${id}%`} : null;
   (core) ? filters.core = {[Op.like]: `${core}%`} : null;
   (socket) ? filters.socket = {[Op.like]: `${socket}%`} : null;
   (manufacturer) ? filters.manufacturer = {[Op.like]: `${manufacturer}%`} : null;
