@@ -7,7 +7,7 @@ import {
 } from '../util/utils';
 
 function colorInvert() {
-  console.log('ye')
+  console.log('Pineapple Ooga Booga Booga');
   let color = 'invert(100%)';
   let back = 'black'
   if (document.body.style.filter === 'invert(100%)') {

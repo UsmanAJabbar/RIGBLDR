@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -36,7 +37,18 @@ const navGenerator = (menuItems = [], options = {}) => {
   )
 }
 
+const awaitfetchData = async (endpoint) => {
+  const res = await axios.get(endpoint)
+
+  console.log(
+    'Res.data in awaitFetchData', res.data
+  )
+
+  return res.data;
+}
+
 export {
   navGenerator,
-  linkGen
+  linkGen,
+  awaitfetchData
 };
