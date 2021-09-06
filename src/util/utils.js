@@ -1,8 +1,9 @@
+import axios from 'axios';
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const linkGen = (navText) => {
-  return (navText === 'Home') ? '/' : navText.toLowerCase().split(' ').join('-');
+  return (navText === 'Home') ? '/' : '/' + navText.toLowerCase().split(' ').join('-');
 }
 
 /**
@@ -11,17 +12,43 @@ const linkGen = (navText) => {
  * @param {@string} className
  * @returns: Returns an array of React links
  */
-const navGenerator = (menuItems = [], className = '') => {
-  return menuItems.map(
-    navText => (
-        <Link to={ linkGen(navText) } className={className}>
-          <span>{navText}</span>
-        </Link>
-    )
-  );
+const navGenerator = (menuItems = [], options = {}) => {
+  const {
+    ulClassName = '',
+    liClassName = '',
+    textClassName = '',
+    ulStyle = {},
+    liStyle = {},
+    textStyle = {}
+  } = options;
+
+  return (
+    <ul style={ulStyle} className={ulClassName}>
+      {
+        menuItems.map((navText, index) => (
+          <li style={liStyle} className={liClassName} key={index}>
+            <Link to={linkGen(navText)}>
+              <span style={textStyle} className={textClassName}>{navText}</span>
+            </Link>
+          </li>
+        ))
+      }
+    </ul>
+  )
+}
+
+const awaitfetchData = async (endpoint) => {
+  const res = await axios.get(endpoint)
+
+  console.log(
+    'Res.data in awaitFetchData', res.data
+  )
+
+  return res.data;
 }
 
 export {
   navGenerator,
-  linkGen
+  linkGen,
+  awaitfetchData
 };

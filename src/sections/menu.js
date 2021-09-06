@@ -1,36 +1,51 @@
 import React from 'react';
+import './menu.css'
 import { withRouter } from "react-router-dom";
 
 import {
   navGenerator
 } from '../util/utils';
 
-class Menu extends React.Component {
-  constructor(props) {
-    super(props)
+function colorInvert() {
+  console.log('Pineapple Ooga Booga Booga');
+  let color = 'invert(100%)';
+  let back = 'black'
+  if (document.body.style.filter === 'invert(100%)') {
+    color = 'invert(0%)'
+    back = 'white'
   }
-  render () {
-    const {
-      
-    } =this.props;
+  document.body.style.filter = color
+  document.documentElement.style.backgroundColor = back
+}
 
-    <div className="section" id="menu">
-      <div id="logo">
-        <span id="logo-text">rigbldr</span>
-      </div>
-      <div id="navigation-menu">
-        {
-          navGenerator(menuItems)
-        }
-      </div>
-    </div>
+class Menu extends React.Component {
+  render () {
+    const menuItems = this.props.menuItems;
+    return (
+      <>
+        <div id="logo">
+          <a href="/">
+            <h1 id="logo-text" style={{ fontWeight: 600 }}>rigbldr</h1>
+          </a>
+        </div>
+        <div id="navigation-link-container">
+          {
+            navGenerator(
+              menuItems, {
+                ulStyle: { display: 'flex' },
+                liStyle: { margin: '0 10px 0 10px' }
+              }
+            )
+          }
+          <div>
+            <span className="dot" onClick={() => colorInvert()}></span>
+            <span className="dot2" onClick={() => colorInvert()}></span>
+          </div>
+        </div>
+      </>
+    )
   }
 }
 
-const menuItems = [
-  'Home',
-  'Build A PC',
-  'Contact'
-];
 
 export default withRouter(Menu);
