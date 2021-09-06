@@ -6,6 +6,18 @@ import {
   navGenerator
 } from '../util/utils';
 
+function colorInvert() {
+  console.log('Pineapple Ooga Booga Booga');
+  let color = 'invert(100%)';
+  let back = 'black'
+  if (document.body.style.filter === 'invert(100%)') {
+    color = 'invert(0%)'
+    back = 'white'
+  }
+  document.body.style.filter = color
+  document.documentElement.style.backgroundColor = back
+}
+
 class Menu extends React.Component {
   render () {
     const menuItems = this.props.menuItems;
@@ -25,6 +37,10 @@ class Menu extends React.Component {
               }
             )
           }
+          <div>
+            <span className="dot" onClick={() => colorInvert()}></span>
+            <span className="dot2" onClick={() => colorInvert()}></span>
+          </div>
         </div>
       </>
     )

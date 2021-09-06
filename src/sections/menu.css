@@ -3,3 +3,23 @@
     align-items: center;
     justify-content: center;
 }
+
+.dot {
+  height: .90rem;
+  width: .90rem;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
+  border: .75px solid black;
+  position: absolute;
+}
+
+.dot2 {
+  height: .90rem;
+  width: .90rem;
+  background-color: #000000;
+  border-radius: 50%;
+  display: inline-block;
+  border: .75px solid black;
+  margin-left: .5rem;
+}
