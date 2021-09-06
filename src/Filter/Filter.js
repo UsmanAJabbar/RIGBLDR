@@ -8,10 +8,10 @@ class Filter extends React.Component {
       part
     } = this.props;
 
-    const data = awaitfetchData(
-      `http://ten.elcoz.io:8080/${linkGen(part).slice(1)}`
-    )
-    console.log('Data returned to Filter component from axios == ', data)
+    const data = fetchData(`http://ten.elcoz.io:8080/${linkGen(part).slice(1)}`)
+		.then(res => {
+      console.log('Data returned to Filter component from axios == ', res)
+    });
 
     return (
       <ContentBox>
