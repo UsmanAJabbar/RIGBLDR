@@ -72,7 +72,7 @@ class Filter extends React.Component {
             <tbody>
               {
                 this.state.rows.map((productRow, index) =>
-                  <FilterRow row={productRow} key={index} />
+                  <FilterRow row={productRow } key={index} />
                 )
               }
             </tbody>
