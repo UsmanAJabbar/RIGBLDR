@@ -1,38 +1,80 @@
 import React from 'react';
+
 import ContentBox from '../assets/ContentBox';
-import { linkGen, awaitfetchData } from '../util/utils';
+import {
+  linkGen
+} from '../util/utils';
+import FilterRow from './FilterRow';
+
+import axios from 'axios';
 
 class Filter extends React.Component {
-  render () {
-    const {
-      part
-    } = this.props;
+  constructor(props) {
+    super(props);
+    this.fetchData = this.fetchData.bind(this);
 
-    const data = awaitfetchData(
-      `http://ten.elcoz.io:8080/${linkGen(part).slice(1)}`
+    this.endpoint = `http://ten.elcoz.io:8080/${linkGen(this.props.part).slice(1)}`;
+
+    this.state = {
+      columns: [],
+      rows: []
+    }
+
+  }
+
+  fetchData = (thenHandler) => axios.get(this.endpoint).then(thenHandler)
+
+  getColumns () {
+    return this.fetchData(
+      data => !!data.data
+        ? this.setState({
+            columns: Object.keys(data.data[0]).map(column => <th>{column}</th>)
+          }, () => console.log(
+            'columns ==', this.state.columns
+          ))
+        : this.setState({
+            columns: []
+          })
     )
-    console.log('Data returned to Filter component from axios == ', data)
+  }
+  getRows () {
+    this.fetchData(
+      data => !!data.data
+      ? this.setState({
+          rows: data.data
+        }, () => console.log(
+          'rows ==', this.state.rows
+        ))
+      : this.setState({
+          rows: []
+        })
+    )
+  }
 
+  componentDidMount () {
+    this.getColumns();
+    this.getRows();
+  }
+
+  render () {
     return (
       <ContentBox>
-        <div className="filter-sidebar"></div>
-        <div className="filter-products">
+        <div className="filter-sidebar" style={{width: '30%'}}></div>
+        <div className="filter-products" style={{width: '70%'}}>
           <table>
             <thead>
               <tr>
                 {
-                  Object.keys(data).map(column => (
-                    <th>{column}</th>
-                  ))
+                  this.state.columns
                 }
               </tr>
             </thead>
             <tbody>
-              {/* {
-                resp.map(row =>
-                  // <FilterRow row={row} columns={acceptable_columns} />
+              {
+                this.state.rows.map((productRow, index) =>
+                  <FilterRow row={productRow} key={index} />
                 )
-              } */}
+              }
             </tbody>
           </table>
         </div>
