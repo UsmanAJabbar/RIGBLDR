@@ -1,4 +1,4 @@
-table#build {
+table {
     width: 100%;
     border-collapse: separate !important;
     table-layout: fixed;
@@ -12,15 +12,15 @@ table#build tr > *:nth-child(3) {
     width: 15%;
 }
 
-table#build tr > * {
+table tr > * {
     padding: 0.3rem;
     border-bottom: solid 0.1rem black;
 }
 
-table#build tr > *:last-child {
+table tr > *:last-child {
     text-align: right;
 }
 
-table#build th {
+table th {
     font-weight: 700;
 }
