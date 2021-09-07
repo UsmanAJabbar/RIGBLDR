@@ -15,7 +15,7 @@ const FilterRow = (props) => {
     <tr className="filter-row">
       <td>{row.part || row.model}</td>
       <td>{row.vendor_endpoint.price}</td>
-      <td onClick={() => selectProductHandler(row, () => history.push('/build'))}>
+      <td onClick={() => selectProductHandler(row, () => history.push('/build'), row.part )}>
         <Button overrides={{ text: { fontWeight: 600, textTransform: 'uppercase' } }}>
           Add
         </Button>

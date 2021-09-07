@@ -45,7 +45,10 @@ class Filter extends React.Component {
   selectProductHandler (selectedProduct, onSuccessHandler) {
     this.setState({
       selectedProduct
-    }, onSuccessHandler)
+    }, () => {
+      onSuccessHandler();
+      this.props.buildSelectProduct(this.props.part, selectedProduct);
+    })
   };
 
   componentDidMount () {
@@ -56,7 +59,7 @@ class Filter extends React.Component {
   render () {
     const {
       headers,
-      products
+      products,
     } = this.state;
 
     return (

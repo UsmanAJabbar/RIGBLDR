@@ -7,7 +7,27 @@ import Button from '../assets/Button';
 import './Build.css';
 
 class Build extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.selectProduct = this.selectProduct.bind(this);
+  }
+
+  selectProduct (key, product) {
+    this.setState({
+      selected: {
+        ...this.state.selected,
+        [key]: product
+      }
+    }, () => console.log('Build JS state', this.state))
+  }
+
   render() {
+    const {
+      selectedProducts
+    } = this.props;
+
+    console.log('Yeet', selectedProducts, this.state)
     return (
       <ContentBox>
         <table id="build" style={{ width: '100%' }}>
@@ -21,16 +41,13 @@ class Build extends React.Component {
           </thead>
           <tbody>
             {
-              [
-                'CPU',
-                'Mobo',
-                'SSD',
-                'RAM',
-                'GPU',
-                'PSU',
-                'Case'
-              ].map((category, index)=> (
-                <ProductRow part={category} key={index} />
+              Object.entries(selectedProducts).map(([category, productRow], index)=> (
+                <ProductRow
+                  key={index}
+                  part={category}
+                  productRow={selectedProducts[category] || productRow}
+                  buildSelectHandler={this.selectProduct}
+                />
               ))
             }
           </tbody>
@@ -42,5 +59,15 @@ class Build extends React.Component {
     )
   }
 }
+
+const parts = {
+  CPU: {},
+  Mobo: {},
+  SSD: {},
+  RAM: {},
+  GPU: {},
+  PSU: {},
+  Case: {}
+};
 
 export default Build;
