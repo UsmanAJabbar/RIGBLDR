@@ -12,12 +12,14 @@ class Filter extends React.Component {
   constructor(props) {
     super(props);
     this.fetchData = this.fetchData.bind(this);
+    this.getColumns = this.getColumns.bind(this);
+    this.getRows = this.getRows.bind(this);
 
     this.endpoint = `http://ten.elcoz.io:8080/${linkGen(this.props.part).slice(1)}`;
 
     this.state = {
-      columns: [],
-      rows: []
+      headers: [],
+      products: []
     }
 
   }
@@ -25,29 +27,17 @@ class Filter extends React.Component {
   fetchData = (thenHandler) => axios.get(this.endpoint).then(thenHandler)
 
   getColumns () {
-    return this.fetchData(
+    this.fetchData(
       data => !!data.data
-        ? this.setState({
-            columns: Object.keys(data.data[0]).map(column => <th>{column}</th>)
-          }, () => console.log(
-            'columns ==', this.state.columns
-          ))
-        : this.setState({
-            columns: []
-          })
+        ? this.setState({ headers: Object.keys(data.data[0]) })
+        : this.setState({ headers: [] })
     )
   }
   getRows () {
     this.fetchData(
       data => !!data.data
-      ? this.setState({
-          rows: data.data
-        }, () => console.log(
-          'rows ==', this.state.rows
-        ))
-      : this.setState({
-          rows: []
-        })
+      ? this.setState({ products: data.data })
+      : this.setState({ products: [] })
     )
   }
 
@@ -57,22 +47,30 @@ class Filter extends React.Component {
   }
 
   render () {
+    const {
+      headers,
+      products
+    } = this.state;
+
     return (
-      <ContentBox>
+      <ContentBox overrides={{ display: 'flex' }}>
         <div className="filter-sidebar" style={{width: '30%'}}></div>
         <div className="filter-products" style={{width: '70%'}}>
-          <table>
+          <table style={{width: '100%'}}>
             <thead>
               <tr>
-                {
-                  this.state.columns
-                }
+                <th>Part (Name)</th>
+                <th>Price</th>
+                <th>Add/Edit</th>
               </tr>
             </thead>
             <tbody>
               {
-                this.state.rows.map((productRow, index) =>
-                  <FilterRow row={productRow} key={index} />
+                products.map((product, index) =>
+                  <FilterRow
+                    row={product}
+                    key={index}
+                  />
                 )
               }
             </tbody>
