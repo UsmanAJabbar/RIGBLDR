@@ -5,8 +5,8 @@ import {
   linkGen
 } from '../util/utils';
 import FilterRow from './FilterRow';
-
 import axios from 'axios';
+
 
 class Filter extends React.Component {
   constructor(props) {
@@ -14,14 +14,15 @@ class Filter extends React.Component {
     this.fetchData = this.fetchData.bind(this);
     this.getColumns = this.getColumns.bind(this);
     this.getRows = this.getRows.bind(this);
+    this.selectProductHandler = this.selectProductHandler.bind(this);
 
     this.endpoint = `http://ten.elcoz.io:8080/${linkGen(this.props.part).slice(1)}`;
 
     this.state = {
       headers: [],
-      products: []
+      products: [],
+      selectedProduct: {}
     }
-
   }
 
   fetchData = (thenHandler) => axios.get(this.endpoint).then(thenHandler)
@@ -36,10 +37,16 @@ class Filter extends React.Component {
   getRows () {
     this.fetchData(
       data => !!data.data
-      ? this.setState({ products: data.data })
-      : this.setState({ products: [] })
+        ? this.setState({ products: data.data })
+        : this.setState({ products: [] })
     )
   }
+
+  selectProductHandler (selectedProduct, onSuccessHandler) {
+    this.setState({
+      selectedProduct
+    }, onSuccessHandler)
+  };
 
   componentDidMount () {
     this.getColumns();
@@ -54,9 +61,9 @@ class Filter extends React.Component {
 
     return (
       <ContentBox overrides={{ display: 'flex' }}>
-        <div className="filter-sidebar" style={{width: '30%'}}></div>
-        <div className="filter-products" style={{width: '70%'}}>
-          <table style={{width: '100%'}}>
+        <div className="filter-sidebar" style={{width: '25%'}}></div>
+        <div className="filter-products" style={{width: '75%'}}>
+          <table className="filter" style={{width: '100%', textAlign: 'left'}}>
             <thead>
               <tr>
                 <th>Part (Name)</th>
@@ -70,6 +77,7 @@ class Filter extends React.Component {
                   <FilterRow
                     row={product}
                     key={index}
+                    selectProductHandler={this.selectProductHandler}
                   />
                 )
               }
