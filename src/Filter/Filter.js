@@ -64,7 +64,9 @@ class Filter extends React.Component {
 
     return (
       <ContentBox overrides={{ display: 'flex' }}>
-        <div className="filter-sidebar" style={{width: '25%'}}></div>
+        <div className="filter-sidebar" style={{width: '25%'}}>
+
+        </div>
         <div className="filter-products" style={{width: '75%'}}>
           <table className="filter" style={{width: '100%', textAlign: 'left'}}>
             <thead>

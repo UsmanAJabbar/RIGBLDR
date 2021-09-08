@@ -28,14 +28,8 @@ class App extends React.Component {
       selected: { ...selectedParts }
     };
 
-    this.pages = {
-      'Home': <Home />,
-      'Build': <Build selectedProducts={this.state.selected} />,
-      'Contact': <Contact />
-    };
-
     this.buildSelectProduct = this.buildSelectProduct.bind(this);
-    this.pageRoutes = Object.entries(this.pages).map(([navText, ReactComponent], index) => {
+    this.pageRoutes = Object.entries(pages).map(([navText, ReactComponent], index) => {
       const navLink = linkGen(navText);
       const tag = navLink.slice(1) || 'home';
       return (
@@ -56,7 +50,7 @@ class App extends React.Component {
       const tag = linkGen(part).slice(1);
       return (
         <Route
-          key={index + Object.keys(this.pages).length}
+          key={index + Object.keys(pages).length}
           path={navLink}
           exact
           component={() => (
@@ -91,7 +85,7 @@ class App extends React.Component {
           containerId="nav-container"
           overrides={{ container: { height: 'fit-content', padding: '1.5rem 0' } }}
         >
-          <Menu menuItems={Object.keys(this.pages)}/>
+          <Menu menuItems={Object.keys(pages)}/>
         </Section>
 
         {/* Sections */}
@@ -104,6 +98,12 @@ class App extends React.Component {
     );
   }
 }
+
+const pages = {
+  'Home': <Home />,
+  'Build': <Build />,
+  'Contact': <Contact />
+};
 
 const selectedParts = {
   CPU: {},
