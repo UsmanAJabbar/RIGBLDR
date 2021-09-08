@@ -14,7 +14,7 @@ class Build extends React.Component {
       { 
         appJsState => (
           <ContentBox>
-            <div className="build-overview" style={{ display: 'flex', fontWeight: 800 }}>
+            <div className="build-overview" style={{ display: 'flex', fontWeight: '800 !' }}>
               <h1>PC</h1>
               <div className="build-overview-container">
                 <h4>Estimated Power Usage</h4>

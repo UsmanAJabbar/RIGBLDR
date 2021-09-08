@@ -6,6 +6,7 @@ import {
 } from '../util/utils';
 import FilterRow from './FilterRow';
 import axios from 'axios';
+import './Filter.css';
 
 
 class Filter extends React.Component {
@@ -68,7 +69,7 @@ class Filter extends React.Component {
 
         </div>
         <div className="filter-products" style={{width: '75%'}}>
-          <table className="filter" style={{width: '100%', textAlign: 'left'}}>
+          <table id="filter" style={{width: '100%', textAlign: 'left'}}>
             <thead>
               <tr>
                 <th>Part (Name)</th>

@@ -1,0 +1,3 @@
+table#filter tr > *:nth-child(2), table#filter tr > *:nth-child(3) {
+    width: 10%;
+}
