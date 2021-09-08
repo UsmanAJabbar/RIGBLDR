@@ -14,6 +14,7 @@ import Build from '../Build/Build';
 import Contact from '../Contact/Contact';
 import Section from '../sections/section';
 import Filter from '../Filter/Filter';
+import AppContext from './AppContext';
 
 // Misc imports
 import { linkGen } from '../util/utils';
@@ -77,7 +78,7 @@ class App extends React.Component {
         ...this.state.selected,
         [key]: product
       }
-    }, () => console.log('App.js State ==', this.state))
+    })
   }
 
   render() {
@@ -94,10 +95,11 @@ class App extends React.Component {
         </Section>
 
         {/* Sections */}
-        <Switch>
-          { [ ...this.pageRoutes, ...this.partRoutes ] }
-        </Switch>
-
+        <AppContext.Provider value={this.state}>
+          <Switch>
+            { [ ...this.pageRoutes, ...this.partRoutes ] }
+          </Switch>
+        </AppContext.Provider>
       </Router>
     );
   }

@@ -14,7 +14,6 @@ class ProductRow extends React.Component {
       productRow,
     } = this.props;
 
-    console.log('ProductRow ==', productRow)
     return (
       <tr className="product-row">
         <td className="pr-part">{part}</td>
