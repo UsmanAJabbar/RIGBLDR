@@ -38,14 +38,11 @@ const navGenerator = (menuItems = [], options = {}) => {
 }
 
 const awaitfetchData = async (endpoint) => {
-  const res = await axios.get(endpoint)
-
-  console.log(
-    'Res.data in awaitFetchData', res.data
+  const data = await Promise.resolve(
+    axios.get(endpoint)
   )
-
-  return res.data;
-}
+  return data;
+};
 
 export {
   navGenerator,

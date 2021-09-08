@@ -6,6 +6,8 @@ import {
   navGenerator
 } from '../util/utils';
 
+import { Link } from 'react-router-dom';
+
 function colorInvert() {
   console.log('Pineapple Ooga Booga Booga');
   let color = 'invert(100%)';
@@ -24,9 +26,9 @@ class Menu extends React.Component {
     return (
       <>
         <div id="logo">
-          <a href="/">
+          <Link to='/'>
             <h1 id="logo-text" style={{ fontWeight: 600 }}>rigbldr</h1>
-          </a>
+          </Link>
         </div>
         <div id="navigation-link-container">
           {
