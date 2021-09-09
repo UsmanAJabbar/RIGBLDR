@@ -14,6 +14,21 @@ class Build extends React.Component {
       { 
         appJsState => (
           <ContentBox>
+            <div className="build-overview" style={{ display: 'flex', fontWeight: '800 !' }}>
+              <h1>PC</h1>
+              <div className="build-overview-container">
+                <h4>Estimated Power Usage</h4>
+                <h4>
+                  {
+                    // TDP Calculator
+                    `${Object.values(appJsState.selected)
+                        .reduce((accumulatedValue, currentPartRow) => accumulatedValue + parseInt(currentPartRow.tdp), 0)
+                        || 0
+                      }W`
+                  }
+                </h4>
+              </div>
+            </div>
             <table id="build" style={{ width: '100%' }}>
               <thead>
                 <tr style={{ textAlign: 'left', textTransform: 'uppercase', fontWeight: 900 }}>
