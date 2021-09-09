@@ -23,7 +23,7 @@ exports.findOne = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  const { model, manufacturer, chipset_manufacturer, chipset, memory, core_clock, boost_clock, pcie_gen } = req.query;
+  const { model, manufacturer, chipset_manufacturer, chipset, memory, core_clock, boost_clock, pcie_gen, vendorEndpointId } = req.query;
   const filters = {};
   (model) ? filters.model = {[Op.like]: `${model}%`} : null;
   (manufacturer) ? filters.manufacturer = {[Op.like]: `${manufacturer}%`} : null;
@@ -33,8 +33,10 @@ exports.findAll = (req, res) => {
   (core_clock) ? filters.core_clock = {[Op.like]: `${core_clock}%`} : null;
   (boost_clock) ? filters.boost_clock = {[Op.like]: `${boost_clock}%`} : null;
   (pcie_gen) ? filters.pcie_gen = {[Op.like]: `${pcie_gen}%`} : null;
+  // don't return any without price info attached
+  filters.vendorEndpointId = { [Op.not]: null, };
   const videoCard = VideoCards.findAll({
-		where: filters,
+    where: filters,
     include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock'] } ] })
 	  .then(data => {
 		  res.send(data);
