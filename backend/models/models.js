@@ -46,6 +46,7 @@ module.exports = (sequelize, Sequelize) => {
   }, { timestamps: false });
 
   const Memory = sequelize.define("memory", {
+		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
     manufacturer: { type: Sequelize.STRING, allowNull: false, }, 
     type: { type: Sequelize.INTEGER, allowNull: false, }, 
     size: { type: Sequelize.STRING, allowNull: false, }, 
@@ -53,6 +54,7 @@ module.exports = (sequelize, Sequelize) => {
 	}, { timestamps: false });
 
   const PowerSupply = sequelize.define("power_supply", {
+		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
     manufacturer: { type: Sequelize.STRING, allowNull: false, }, 
 		wattage: { type: Sequelize.STRING, allowNull: false, }, 
     form_factor: { type: Sequelize.STRING, allowNull: false, }, 
@@ -61,12 +63,14 @@ module.exports = (sequelize, Sequelize) => {
 	}, { timestamps: false });
 
   const Case = sequelize.define("case", {
+		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
     manufacturer: { type: Sequelize.STRING, allowNull: false, }, 
     form_factor: { type: Sequelize.STRING, allowNull: false, }, 
 		tempered_glass: { type: Sequelize.BOOLEAN, allowNull: false, },
 	}, { timestamps: false });
 
   const Storage = sequelize.define("storage", {
+		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
     manufacturer: { type: Sequelize.STRING, allowNull: false, }, 
     interface: { type: Sequelize.STRING, allowNull: false, }, 
 		capacity: { type: Sequelize.INTEGER, allowNull: false, },

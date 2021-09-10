@@ -9,5 +9,5 @@ module.exports = app => {
 
 	router.get("/", storages.findAll);
 	router.get("/:id", storages.findOne);
-	app.use('/storage', router);
+	app.use('/ssd', router);
 };
