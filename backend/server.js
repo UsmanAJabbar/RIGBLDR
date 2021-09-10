@@ -5,7 +5,7 @@ const rainForestApi = require('./util/rainforest-common.js')
 const app = express();
 
 let corsOptions = {
-	origin: "http://localhost:8080"
+	origin: "http://localhost:8081"
 };
 
 app.use(cors(corsOptions));
@@ -19,12 +19,6 @@ app.get("/", (req, res) => {
 });
 
 require("./routes/processors")(app);
-require("./routes/video_cards")(app);
-require("./routes/motherboards")(app);
-require("./routes/cases")(app);
-require("./routes/storages")(app);
-require("./routes/memory")(app);
-require("./routes/power_supplies")(app);
 
 const PORT = process.env.PORT || 8080;
 
