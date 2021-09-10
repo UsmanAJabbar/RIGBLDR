@@ -1,38 +1,92 @@
 import React from 'react';
+
 import ContentBox from '../assets/ContentBox';
-import { linkGen, awaitfetchData } from '../util/utils';
+import {
+  linkGen
+} from '../util/utils';
+import FilterRow from './FilterRow';
+import axios from 'axios';
+import './Filter.css';
+
 
 class Filter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.fetchData = this.fetchData.bind(this);
+    this.getColumns = this.getColumns.bind(this);
+    this.getRows = this.getRows.bind(this);
+    this.selectProductHandler = this.selectProductHandler.bind(this);
+
+    this.endpoint = `http://ten.elcoz.io:8080/${linkGen(this.props.part).slice(1)}`;
+
+    this.state = {
+      headers: [],
+      products: [],
+      selectedProduct: {}
+    }
+  }
+
+  fetchData = (thenHandler) => axios.get(this.endpoint).then(thenHandler)
+
+  getColumns () {
+    this.fetchData(
+      data => !!data.data
+        ? this.setState({ headers: Object.keys(data.data[0]) })
+        : this.setState({ headers: [] })
+    )
+  }
+  getRows () {
+    this.fetchData(
+      data => !!data.data
+        ? this.setState({ products: data.data })
+        : this.setState({ products: [] })
+    )
+  }
+
+  selectProductHandler (selectedProduct, onSuccessHandler) {
+    this.setState({
+      selectedProduct
+    }, () => {
+      onSuccessHandler();
+      this.props.buildSelectProduct(this.props.part, selectedProduct);
+    })
+  };
+
+  componentDidMount () {
+    this.getColumns();
+    this.getRows();
+  }
+
   render () {
     const {
-      part
-    } = this.props;
-
-    const data = fetchData(`http://ten.elcoz.io:8080/${linkGen(part).slice(1)}`)
-		.then(res => {
-      console.log('Data returned to Filter component from axios == ', res)
-    });
+      headers,
+      products,
+    } = this.state;
 
     return (
-      <ContentBox>
-        <div className="filter-sidebar"></div>
-        <div className="filter-products">
-          <table>
+      <ContentBox overrides={{ display: 'flex' }}>
+        <div className="filter-sidebar" style={{width: '25%'}}>
+
+        </div>
+        <div className="filter-products" style={{width: '75%'}}>
+          <table id="filter" style={{width: '100%', textAlign: 'left'}}>
             <thead>
               <tr>
-                {
-                  Object.keys(data).map(column => (
-                    <th>{column}</th>
-                  ))
-                }
+                <th>Part (Name)</th>
+                <th>Price</th>
+                <th>Add/Edit</th>
               </tr>
             </thead>
             <tbody>
-              {/* {
-                resp.map(row =>
-                  // <FilterRow row={row} columns={acceptable_columns} />
+              {
+                products.map((product, index) =>
+                  <FilterRow
+                    row={product}
+                    key={index}
+                    selectProductHandler={this.selectProductHandler}
+                  />
                 )
-              } */}
+              }
             </tbody>
           </table>
         </div>
