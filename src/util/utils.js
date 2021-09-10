@@ -47,5 +47,5 @@ const awaitfetchData = async (endpoint) => {
 export {
   navGenerator,
   linkGen,
-  fetchData
+  awaitfetchData
 };
