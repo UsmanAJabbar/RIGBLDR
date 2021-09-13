@@ -5,8 +5,8 @@
 }
 
 .dot {
-  height: .90rem;
-  width: .90rem;
+  height: 1.5rem;
+  width: 1.5rem;
   background-color: white;
   border-radius: 50%;
   display: inline-block;
@@ -15,8 +15,8 @@
 }
 
 .dot2 {
-  height: .90rem;
-  width: .90rem;
+  height: 1.5rem;
+  width: 1.5rem;
   background-color: #000000;
   border-radius: 50%;
   display: inline-block;

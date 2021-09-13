@@ -62,11 +62,11 @@ class Filter extends React.Component {
       headers,
       products,
     } = this.state;
-
+    console.log(this.state)
     return (
       <ContentBox overrides={{ display: 'flex' }}>
         <div className="filter-sidebar" style={{width: '25%'}}>
-
+          <h1>FILTER</h1>
         </div>
         <div className="filter-products" style={{width: '75%'}}>
           <table id="filter" style={{width: '100%', textAlign: 'left'}}>

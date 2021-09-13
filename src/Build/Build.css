@@ -23,3 +23,9 @@ table tr > *:last-child {
 table th {
     font-weight: 700;
 }
+
+.build-overview-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
