@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { rfLinkGen } from '../util/utils';
 
 import ProductRow from './ProductRow';
 import ContentBox from '../assets/ContentBox';
-import Button from '../assets/Button';
+import ProceedButton from '../assets/ProceedButton';
 import AppContext from '../App/AppContext';
 
 import './Build.css';
@@ -51,7 +53,9 @@ class Build extends React.Component {
               </tbody>
             </table>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginTop: '1rem' }}>
-              <Button overrides={{ text: { textTransform: 'uppercase', fontWeight: 700 }}}>Proceed</Button>
+              <Link to={`/proceed`} selectionString='..'>
+	        <ProceedButton overrides={{ text: { textTransform: 'uppercase', fontWeight: 700 }}}>Proceed</ProceedButton>
+              </Link>
             </div>
           </ContentBox>
         )
