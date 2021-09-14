@@ -6,6 +6,10 @@ const linkGen = (navText) => {
   return (navText === 'Home') ? '/' : '/' + navText.toLowerCase().split(' ').join('-');
 }
 
+const rfLinkGen = (vendorProductId) => {
+	return 'https://www.amazon.com/gp/aws/cart/add.html?ASIN.1=' + vendorProductId + '&Quantity.1=1';
+}
+
 /**
  * navGenerator - generates React links with the link and text
  * @param {@array} menuItems
@@ -37,15 +41,8 @@ const navGenerator = (menuItems = [], options = {}) => {
   )
 }
 
-const awaitfetchData = async (endpoint) => {
-  const data = await Promise.resolve(
-    axios.get(endpoint)
-  )
-  return data;
-};
-
 export {
   navGenerator,
   linkGen,
-  fetchData
+  rfLinkGen,
 };
