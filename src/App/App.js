@@ -12,6 +12,7 @@ import Menu from '../sections/menu';
 import Home from '../Home/Home';
 import Build from '../Build/Build';
 import Contact from '../Contact/Contact';
+import Proceed from '../Proceed/Proceed';
 import Section from '../sections/section';
 import Filter from '../Filter/Filter';
 import AppContext from './AppContext';
@@ -85,7 +86,7 @@ class App extends React.Component {
           containerId="nav-container"
           overrides={{ container: { height: 'fit-content', padding: '1.5rem 0' } }}
         >
-          <Menu menuItems={Object.keys(pages)}/>
+          <Menu menuItems={Object.keys(menuItems)}/>
         </Section>
 
         {/* Sections */}
@@ -102,8 +103,12 @@ class App extends React.Component {
 const pages = {
   'Home': <Home />,
   'Build': <Build />,
-  'Contact': <Contact />
+  'Contact': <Contact />,
+  proceed: <Proceed />
 };
+
+// filter proceed from pages
+const { proceed, ...menuItems } = pages
 
 const selectedParts = {
   CPU: {},
