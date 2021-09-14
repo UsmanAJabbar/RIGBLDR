@@ -8,19 +8,7 @@ import AppContext from '../App/AppContext';
 import './Build.css';
 
 class Build extends React.Component {
-  getTotal() {
-    let total = 0;
-    const prices = document.getElementsByClassName('pr-price')
-    for (let i = 0; i < prices.length; i++) {
-      console.log(typeof prices[i].innerHTML)
-      if (prices[i].innerHTML != null) {
-        total = total + prices[i].innerHTML
-      }
-    }
-    return (total)
-  }
   render() {
-
     return (
       <AppContext.Consumer>
       { 

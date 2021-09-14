@@ -18,6 +18,7 @@ import AppContext from './AppContext';
 
 // Misc imports
 import { linkGen } from '../util/utils';
+import { addPart, getPart } from '../util/cookies'
 
 
 class App extends React.Component {
@@ -73,6 +74,21 @@ class App extends React.Component {
         [key]: product
       }
     })
+    addPart(key, JSON.stringify(product))
+  }
+
+  componentDidMount() {
+    if (getPart() !== null) {
+      const allParts = getPart()
+      for (const item in allParts) {
+        allParts[item] = JSON.parse(allParts[item])
+      }
+      this.setState({
+        selected: {
+          ...allParts
+        }
+      })
+    }
   }
 
   render() {
