@@ -24,7 +24,7 @@ class Build extends React.Component {
                     // console.log(appJsState)
                     `${Object.values(appJsState.selected)
                         .reduce(
-                          (total, currentPart) => total + (currentPart.tdp || 0), 0)
+                          (total, currentPart) => total + (parseInt(currentPart.tdp) || 0), 0)
                         || 0
                       }W`
                   }
@@ -36,7 +36,7 @@ class Build extends React.Component {
                     {
                       `$${Object.values(appJsState.selected)
                           .reduce(
-                            (total, currentPart) => total + (Math.round((currentPart?.vendor_endpoint?.price || 0) * 100) / 100),
+                            (total, currentPart) => Math.round((total + (currentPart?.vendor_endpoint?.price || 0)) * 100) / 100,
                           0) || 0
                         }`
                     }
