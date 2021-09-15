@@ -64,6 +64,7 @@ class Build extends React.Component {
                 }
               </tbody>
             </table>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginTop: '1rem' }}>
             <a target="_blank" rel="noreferrer" href={
               `https://www.amazon.com/gp/aws/cart/add.html${
                 Object.values(appJsState.selected)
@@ -75,10 +76,9 @@ class Build extends React.Component {
                   )
               }`
             }>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginTop: '1rem' }}>
                 <Button overrides={{ text: { textTransform: 'uppercase', fontWeight: 700 }}}>Proceed</Button>
-              </div>
             </a>
+              </div>
           </ContentBox>
         )
       }
