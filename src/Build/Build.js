@@ -65,21 +65,21 @@ class Build extends React.Component {
                 }
               </tbody>
             </table>
-            <a target="_blank" rel="noreferrer" href={
-              `https://www.amazon.com/gp/aws/cart/add.html${
-                Object.values(appJsState.selected)
-                  .reduce((link, currentPart, index) =>
-                    (currentPart?.vendor_endpoint?.vendor_product_id)
-                      ? `${link + ((index === 0) ? '?': '&')}` + `ASIN.${index + 1}=${currentPart?.vendor_endpoint?.vendor_product_id}&Quantity.${index + 1}=1`
-                      : link
-                    , ''
-                  )
-              }`
-            }>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginTop: '1rem' }}>
-                <Button overrides={{ text: { textTransform: 'uppercase', fontWeight: 700 }}}>Proceed</Button>
-              </div>
-            </a>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginTop: '1rem' }}>
+              <a target="_blank" rel="noreferrer" href={
+                `https://www.amazon.com/gp/aws/cart/add.html${
+                  Object.values(appJsState.selected)
+                    .reduce((link, currentPart, index) =>
+                      (currentPart?.vendor_endpoint?.vendor_product_id)
+                        ? `${link + ((index === 0) ? '?': '&')}` + `ASIN.${index + 1}=${currentPart?.vendor_endpoint?.vendor_product_id}&Quantity.${index + 1}=1`
+                        : link
+                      , ''
+                    )
+                }`
+              }>
+              <Button overrides={{ text: { textTransform: 'uppercase', fontWeight: 700 }}}>Proceed</Button>
+              </a>
+            </div>
           </ContentBox>
         )
       }
