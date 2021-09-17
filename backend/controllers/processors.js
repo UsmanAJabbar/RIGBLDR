@@ -3,14 +3,14 @@ const { Processors, VendorEndpoints } = db.models;
 const Op = db.Sequelize.Op;
 
 
-exports.create = (req, res) => {
+// exports.create = (req, res) => {
+// };
 
-};
-
+// find one part by id
 exports.findOne = (req, res) => {
 const processor = Processors.findOne({
   where: { id: req.params.id },
-  include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock'] } ] })
+  include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock', 'vendor_product_id'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})
@@ -22,6 +22,7 @@ const processor = Processors.findOne({
 	});
 };
 
+// find all parts or limit by column values
 exports.findAll = (req, res) => {
   const { id, core, socket, manufacturer, proc_tier, generation, part_num, thread, smt, tdp } = req.query;
   const filters = {};
@@ -40,7 +41,7 @@ exports.findAll = (req, res) => {
     include: [
 			{
 				model: VendorEndpoints, 
-				attributes: ['price', 'in_stock'] 
+				attributes: ['price', 'in_stock', 'vendor_product_id'] 
 			}
 		] 
 		})
@@ -55,10 +56,8 @@ exports.findAll = (req, res) => {
 	});
 };
 
-exports.update = (req, res) => {
+// exports.update = (req, res) => {
+// };
 
-};
-
-exports.delete = (req, res) => {
-
-};
+// exports.delete = (req, res) => {
+// };

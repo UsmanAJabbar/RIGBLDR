@@ -3,14 +3,14 @@ const { VideoCards, VendorEndpoints } = db.models;
 const Op = db.Sequelize.Op;
 
 
-exports.create = (req, res) => {
+// exports.create = (req, res) => {
+// };
 
-};
-
+// find one part by id
 exports.findOne = (req, res) => {
   const videoCard = VideoCards.findOne({
     where: { id: req.params.id },
-    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock'] } ] })
+    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock', 'vendor_product_id'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})
@@ -22,6 +22,7 @@ exports.findOne = (req, res) => {
 	});
 };
 
+// find all parts or limit by column values
 exports.findAll = (req, res) => {
   const { model, manufacturer, chipset_manufacturer, chipset, memory, core_clock, boost_clock, pcie_gen, vendorEndpointId } = req.query;
   const filters = {};
@@ -37,7 +38,7 @@ exports.findAll = (req, res) => {
   filters.vendorEndpointId = { [Op.not]: null, };
   const videoCard = VideoCards.findAll({
     where: filters,
-    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock'] } ] })
+    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock', 'vendor_product_id'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})
@@ -49,10 +50,8 @@ exports.findAll = (req, res) => {
 	});
 };
 
-exports.update = (req, res) => {
+// exports.update = (req, res) => {
+// };
 
-};
-
-exports.delete = (req, res) => {
-
-};
+// exports.delete = (req, res) => {
+// };

@@ -1,4 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
+	const VendorEndpoints = sequelize.define("vendor_endpoints", {
+		title: { type: Sequelize.STRING, allowNull: false, },
+		vendor_id: { type: Sequelize.STRING, allowNull: false, },
+		vendor_product_id: { type: Sequelize.STRING, unique: true, },
+		price: { type: Sequelize.FLOAT(5,2), allowNull: false, default: 0.00 },
+		in_stock: { type: Sequelize.BOOLEAN, allowNull: false, default: 0 },
+	});
+
 	const Processors = sequelize.define("processors", {
 		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
 		manufacturer: { type: Sequelize.STRING, allowNull: false, },
@@ -9,16 +17,11 @@ module.exports = (sequelize, Sequelize) => {
 		core: { type: Sequelize.INTEGER, allowNull: false, },
 		thread: { type: Sequelize.INTEGER, },
 		smt: { type: Sequelize.BOOLEAN, allowNull: false, },
-		tdp: { type: Sequelize.STRING, allowNull: false, },
+		tdp: { type: Sequelize.INTEGER, allowNull: false, },
   }, { timestamps: false });
 
-	const VendorEndpoints = sequelize.define("vendor_endpoints", {
-		title: { type: Sequelize.STRING, allowNull: false, },
-		vendor_id: { type: Sequelize.STRING, allowNull: false, },
-		vendor_product_id: { type: Sequelize.STRING, unique: true, },
-		price: { type: Sequelize.DECIMAL(5,2), allowNull: false, default: 0.00 },
-		in_stock: { type: Sequelize.BOOLEAN, allowNull: false, default: 0 },
-	});
+  Processors.belongsTo(VendorEndpoints);
+	// VendorEndpoints.hasMany(Processors);
 
   const VideoCards = sequelize.define("video_cards", {
 		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
@@ -29,7 +32,11 @@ module.exports = (sequelize, Sequelize) => {
     core_clock: { type: Sequelize.INTEGER, allowNull: false, }, 
     boost_clock: { type: Sequelize.INTEGER, allowNull: false, }, 
     pcie_gen: { type: Sequelize.STRING, allowNull: false, }, 
+		tdp: { type: Sequelize.INTEGER, allowNull: false, },
   }, { timestamps: false });
+
+  VideoCards.belongsTo(VendorEndpoints);
+  // VendorEndpoints.hasMany(VideoCards);
 
 	const Motherboards = sequelize.define("motherboards", {
 		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
@@ -45,13 +52,19 @@ module.exports = (sequelize, Sequelize) => {
     m2_slots: { type: Sequelize.INTEGER, }, 
   }, { timestamps: false });
 
+  Motherboards.belongsTo(VendorEndpoints);
+// VendorEndpoints.hasMany(Motherboards);
+
   const Memory = sequelize.define("memory", {
 		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
     manufacturer: { type: Sequelize.STRING, allowNull: false, }, 
-    type: { type: Sequelize.INTEGER, allowNull: false, }, 
-    size: { type: Sequelize.STRING, allowNull: false, }, 
-    speed: { type: Sequelize.STRING, allowNull: false, }, 
+    type: { type: Sequelize.STRING, allowNull: false, }, 
+    size: { type: Sequelize.INTEGER, allowNull: false, }, 
+    speed: { type: Sequelize.INTEGER, allowNull: false, }, 
 	}, { timestamps: false });
+
+  Memory.belongsTo(VendorEndpoints);
+  // VendorEndpoints.hasMany(Memory);
 
   const PowerSupply = sequelize.define("power_supply", {
 		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
@@ -62,12 +75,18 @@ module.exports = (sequelize, Sequelize) => {
 		efficiency: { type: Sequelize.STRING, allowNull: false, },
 	}, { timestamps: false });
 
+  PowerSupply.belongsTo(VendorEndpoints);
+  // VendorEndpoints.hasMany(PowerSupply);
+
   const Case = sequelize.define("case", {
 		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
     manufacturer: { type: Sequelize.STRING, allowNull: false, }, 
     form_factor: { type: Sequelize.STRING, allowNull: false, }, 
 		tempered_glass: { type: Sequelize.BOOLEAN, allowNull: false, },
 	}, { timestamps: false });
+
+  Case.belongsTo(VendorEndpoints);
+  // VendorEndpoints.hasMany(Case);
 
   const Storage = sequelize.define("storage", {
 		model: { type: Sequelize.STRING, allowNull: false, unique: true, },
@@ -77,26 +96,8 @@ module.exports = (sequelize, Sequelize) => {
 		type: { type: Sequelize.STRING, allowNull: false, },
 	}, { timestamps: false });
 
-  Processors.belongsTo(VendorEndpoints);
-	// VendorEndpoints.hasMany(Processors);
-
-  Motherboards.belongsTo(VendorEndpoints);
-// VendorEndpoints.hasMany(Motherboards);
-
-  VideoCards.belongsTo(VendorEndpoints);
-// VendorEndpoints.hasMany(VideoCards);
-
-  PowerSupply.belongsTo(VendorEndpoints);
-// VendorEndpoints.hasMany(PowerSupply);
-
-  Memory.belongsTo(VendorEndpoints);
-// VendorEndpoints.hasMany(Memory);
-
-  Case.belongsTo(VendorEndpoints);
-// VendorEndpoints.hasMany(Case);
-
   Storage.belongsTo(VendorEndpoints);
-// VendorEndpoints.hasMany(Storage);
+  // VendorEndpoints.hasMany(Storage);
 
 	return { Processors, VideoCards, Motherboards, PowerSupply, Memory, Case, Storage, VendorEndpoints };
 };

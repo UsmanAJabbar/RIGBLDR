@@ -3,14 +3,14 @@ const { PowerSupply, VendorEndpoints } = db.models;
 const Op = db.Sequelize.Op;
 
 
-exports.create = (req, res) => {
+// exports.create = (req, res) => {
+// };
 
-};
-
+// find one part by id
 exports.findOne = (req, res) => {
   const cases = PowerSupply.findOne({
     where: { id: req.params.id },
-    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock'] } ] })
+    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock', 'vendor_product_id'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})
@@ -22,6 +22,7 @@ exports.findOne = (req, res) => {
 	});
 };
 
+// find all parts or limit by column values
 exports.findAll = (req, res) => {
   const { manufacturer, form_factor, tempered_glass } = req.query;
   const filters = {};
@@ -30,7 +31,7 @@ exports.findAll = (req, res) => {
   (tempered_glass) ? filters.tempered_glass = {[Op.like]: `${tempered_glass}%`} : null;
   const cases = PowerSupply.findAll({
 		where: filters,
-    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock'] } ] })
+    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock', 'vendor_product_id'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})
@@ -49,3 +50,9 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
 
 };
+
+// exports.update = (req, res) => {
+// };
+
+// exports.delete = (req, res) => {
+// };

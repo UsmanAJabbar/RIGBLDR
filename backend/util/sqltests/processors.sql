@@ -33,7 +33,7 @@ CREATE TABLE `processors` (
   `core` int(11) NOT NULL,
   `thread` int(11) DEFAULT NULL,
   `smt` tinyint(1) NOT NULL,
-  `tdp` varchar(255) NOT NULL,
+  `tdp` int(11) NOT NULL,
   `vendorEndpointId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `model` (`model`),
@@ -48,7 +48,7 @@ CREATE TABLE `processors` (
 
 LOCK TABLES `processors` WRITE;
 /*!40000 ALTER TABLE `processors` DISABLE KEYS */;
-INSERT INTO `processors` VALUES (9,'AMD Ryzen 5 5600X','AMD','5600X',5,'Ryzen 5','AM4',6,12,1,'65 W',1),(10,'AMD Ryzen 7 5800X','AMD','Ryzen 7',5,'5800X','AM4',8,16,1,'105 W',6),(11,'Intel Core i7-10700K','Intel','Core i7',10,'10700X','LGA 1200',8,16,1,'125 W',17),(12,'AMD Ryzen 9 5950X','AMD','5950X',5,'Ryzen 9','AM4',16,32,1,'105 W',7);
+INSERT INTO `processors` VALUES (9,'AMD Ryzen 5 5600X','AMD','5600X',5,'Ryzen 5','AM4',6,12,1,65,1),(10,'AMD Ryzen 7 5800X','AMD','Ryzen 7',5,'5800X','AM4',8,16,1,105,6),(11,'Intel Core i7-10700K','Intel','Core i7',10,'10700X','LGA 1200',8,16,1,125,17),(12,'AMD Ryzen 9 5950X','AMD','5950X',5,'Ryzen 9','AM4',16,32,1,105,7);
 /*!40000 ALTER TABLE `processors` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

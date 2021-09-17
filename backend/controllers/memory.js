@@ -3,14 +3,14 @@ const { Memory, VendorEndpoints } = db.models;
 const Op = db.Sequelize.Op;
 
 
-exports.create = (req, res) => {
+// exports.create = (req, res) => {
+// };
 
-};
-
+// find one part by id
 exports.findOne = (req, res) => {
   const cases = Memory.findOne({
     where: { id: req.params.id },
-    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock'] } ] })
+    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock', 'vendor_product_id'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})
@@ -22,15 +22,18 @@ exports.findOne = (req, res) => {
 	});
 };
 
+// find all parts or limit by column values
 exports.findAll = (req, res) => {
-  const { manufacturer, form_factor, tempered_glass } = req.query;
+  const { model, manufacturer, type, size, speed } = req.query;
   const filters = {};
+  (model) ? filters.model = {[Op.like]: `${model}%`} : null;
   (manufacturer) ? filters.manufacturer = {[Op.like]: `${manufacturer}%`} : null;
-  (form_factor) ? filters.form_factor = {[Op.like]: `${form_factor}%`} : null;
-  (tempered_glass) ? filters.tempered_glass = {[Op.like]: `${tempered_glass}%`} : null;
+  (type) ? filters.type = {[Op.like]: `${type}%`} : null;
+  (size) ? filters.size = {[Op.like]: `${size}%`} : null;
+  (speed) ? filters.speed = {[Op.like]: `${speed}%`} : null;
   const cases = Memory.findAll({
 		where: filters,
-    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock'] } ] })
+    include: [ { model: VendorEndpoints, attributes: ['price', 'in_stock', 'vendor_product_id'] } ] })
 	  .then(data => {
 		  res.send(data);
 		})
@@ -42,10 +45,8 @@ exports.findAll = (req, res) => {
 	});
 };
 
-exports.update = (req, res) => {
+// exports.update = (req, res) => {
+// };
 
-};
-
-exports.delete = (req, res) => {
-
-};
+// exports.delete = (req, res) => {
+// };

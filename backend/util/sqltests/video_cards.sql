@@ -46,7 +46,7 @@ CREATE TABLE `video_cards` (
 
 LOCK TABLES `video_cards` WRITE;
 /*!40000 ALTER TABLE `video_cards` DISABLE KEYS */;
-INSERT INTO `video_cards` VALUES (1,'EVGA GeForce RTX 3060 XC Gaming','EVGA','NVIDIA','GeForce RTX 3060',12,0,1882,'16',NULL),(2,'PowerColor Red Devil AMD Radeon RX 6700 XT Gaming Graphics Card','PowerColor','AMD','Radeon RX 6700 XT',12,2514,2633,'16',NULL),(3,'ZOTAC Gaming GeForce GTX 1660 Super 6GB GDDR6 192-bit Gaming Graphics Card','ZOTAC','NVIDIA','GeForce GTX 1660',6,0,1785,'8',NULL);
+INSERT INTO `video_cards` VALUES (1,'EVGA GeForce RTX 3060 XC Gaming','EVGA','NVIDIA','GeForce RTX 3060',12,0,1882,'16',170,NULL),(2,'PowerColor Red Devil AMD Radeon RX 6700 XT Gaming Graphics Card','PowerColor','AMD','Radeon RX 6700 XT',12,2514,2633,'16',230,NULL),(3,'ZOTAC Gaming GeForce GTX 1660 Super 6GB GDDR6 192-bit Gaming Graphics Card','ZOTAC','NVIDIA','GeForce GTX 1660',6,0,1785,'8',125,NULL);
 /*!40000 ALTER TABLE `video_cards` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
